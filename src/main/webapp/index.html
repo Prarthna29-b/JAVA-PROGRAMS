@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="ISO-8859-1">  
+<title>Insert title here</title>  
+</head>  
+<body>  
+ <img  src= "IMG/image.jpg" align="right">
+ <font color=" green"><h1 align="center">STUDENT INFORMATION!</h1></font>
+ <font color="blue" ><h3>You have successfully get connected with the 
+<b>ALWAYS LEARNING INSTITUTE </b>database.</h3> </font>
+  
+<h1>Add New Student</h1>  
+<form action="SaveServlet" method="post">  
+<table>
+<tr><td>Stud_id</td><td><input type="text" name="stud_id"/></td></tr>    
+<tr><td>Name:</td><td><input type="text" name="name"/></td></tr>  
+<tr><td>Age:</td><td><input type="text" name="age"/></td></tr>
+<tr><td>Contactno:</td><td><input type="text" name="contactno"/></td></tr>  
+<tr><td>Email:</td><td><input type="email" name="email"/></td></tr> 
+<tr><td>Address:</td><td><input type="text" name="address"/></td></tr>
+<tr><td>Course:</td><td><input type="text" name="course"/></td></tr> 
+</table>  <input type="submit" value="Save Student"/>
+<input type="reset" value="Reset" size="40" />
+</form>  
+  
+<br/> 
+TO VIEW THE COMPLETE LIST OF THE STUDENTS OPEN THE VIEW STUDENT LINK.
+<a href="ViewServlet"><center><h2>View Student</h2></center></a>  
+  
+</body>  
+</html>
