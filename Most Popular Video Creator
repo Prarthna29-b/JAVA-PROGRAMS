@@ -1,0 +1,121 @@
+ Most Popular Video Creator
+
+You are given two string arrays creators and ids, and an integer array views, all of length n. The ith video on a platform was created by creator[i], has an id of ids[i], and has views[i] views.
+
+The popularity of a creator is the sum of the number of views on all of the creator's videos. Find the creator with the highest popularity and the id of their most viewed video.
+
+If multiple creators have the highest popularity, find all of them.
+If multiple videos have the highest view count for a creator, find the lexicographically smallest id.
+Return a 2D array of strings answer where answer[i] = [creatori, idi] means that creatori has the highest popularity and idi is the id of their most popular video. The answer can be returned in any order.
+
+ 
+
+Example 1:
+
+Input: creators = ["alice","bob","alice","chris"], ids = ["one","two","three","four"], views = [5,10,5,4]
+Output: [["alice","one"],["bob","two"]]
+Explanation:
+The popularity of alice is 5 + 5 = 10.
+The popularity of bob is 10.
+The popularity of chris is 4.
+alice and bob are the most popular creators.
+For bob, the video with the highest view count is "two".
+For alice, the videos with the highest view count are "one" and "three". Since "one" is lexicographically smaller than "three", it is included in the answer.
+Example 2:
+
+Input: creators = ["alice","alice","alice"], ids = ["a","b","c"], views = [1,2,2]
+Output: [["alice","b"]]
+Explanation:
+The videos with id "b" and "c" have the highest view count.
+Since "b" is lexicographically smaller than "c", it is included in the answer.
+ 
+
+Constraints:
+
+n == creators.length == ids.length == views.length
+1 <= n <= 105
+1 <= creators[i].length, ids[i].length <= 5
+creators[i] and ids[i] consist only of lowercase English letters.
+0 <= views[i] <= 105
+
+Solution:
+class Pair implements Comparable<Pair>{                            //create class pair that implements comparable Interface
+    
+    String name;
+    int views;
+    
+    public Pair(String n, int v){
+        this.name = n;
+        this.views = v;
+    }
+    
+    public int compareTo(Pair pair){
+        return pair.views-this.views;
+    }
+    
+}
+
+class Solution {
+    public List<List<String>> mostPopularCreator(String[] creators, String[] id, int[] views) {
+        
+        List<List<String>> ans = new ArrayList<>();
+        
+        if(id.length == 0 ) return ans;
+        
+        int n = id.length;
+        
+        HashMap<String, Integer> hvid = new HashMap<>();                         //create three different maps on the basis of key value pair to store the given data
+        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<String, String> idmap = new HashMap<>();
+        
+        
+        for(int i = 0; i < n; i++){
+            if(map.containsKey(creators[i]) == true){
+                map.put(creators[i], map.get(creators[i]) + views[i]);
+                 if(hvid.get(creators[i]) == views[i]){
+                     if(idmap.get(creators[i]).length() > id[i].length()){
+                         idmap.put(creators[i], id[i]);
+                     }
+                 }
+                 if(hvid.get(creators[i]) < views[i]){
+                    hvid.put(creators[i], views[i]);
+                    idmap.put(creators[i], id[i]);
+                }
+            }else{
+                map.put(creators[i], views[i]);
+                hvid.put(creators[i], views[i]);
+                idmap.put(creators[i], id[i]);
+            }
+          
+        }
+        
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        
+         for (Map.Entry<String,Integer> e : map.entrySet()){
+             pq.add(new Pair(e.getKey(), e.getValue()));
+         }
+        
+        Pair node = pq.remove();
+        int hv = node.views;
+        List<String> temp1 = new ArrayList<>();
+        temp1.add(node.name);
+        temp1.add(idmap.get(node.name));
+        ans.add(temp1);
+       
+                    
+        while(pq.size() > 0 ){
+            
+            Pair pair = pq.remove();
+            
+            if(hv == pair.views){
+                List<String> temp = new ArrayList<>();
+                temp.add(pair.name);
+                temp.add(idmap.get(pair.name));
+                ans.add(temp);
+            }else{
+                break;
+            }
+        }
+       return ans; 
+    }
+}
