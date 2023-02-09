@@ -23,3 +23,28 @@ class GFG {
 ******
 Output 
 true
+######
+Recursion using one variable 
+/*package whatever //do not write package name here */
+
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		String st="wrterw";
+		System.out.println (f(st,0,st.length()));
+
+	}
+	static boolean f(String st, int i,int n)
+	{
+	    if(i>=n/2)
+	    return true ;
+	    if(st.charAt(i)!=st.charAt(n-1-i))
+	    return false;
+	    return f(st,i+1,n);
+	   
+	    	}
+}
+******
+Output
+false
