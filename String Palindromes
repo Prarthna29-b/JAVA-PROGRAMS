@@ -1,0 +1,25 @@
+******
+String Palindrome using Recursion 
+/*package whatever //do not write package name here */
+
+import java.io.*;
+
+class GFG {
+	public static void main (String[] args) {
+		String st="wrtrw";
+		System.out.println (f(st,0,st.length()-1));
+
+	}
+	static boolean f(String st, int l,int r)
+	{
+	    if(l==r)
+	    return true ;
+	    if(st.charAt(l)!=st.charAt(r))
+	    return false;
+	    return f(st,l+1,r-1);
+	  
+	    	}
+}
+******
+Output 
+true
