@@ -1,0 +1,35 @@
+####
+All subarray of an array to print the given sum using Recursion
+ /*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) {
+	    List<Integer> list= new ArrayList<Integer>();
+	    int arr[]={3,2,1,2};
+  f(0,list,arr,0);
+	}
+static void	f(int index,List <Integer> list,int arr[],int sum)
+	{
+	    if(index==arr.length)
+	    {
+	        if(sum==3)
+	    System.out.println (list);
+	   return;
+	    }
+	    f(index+1,list,arr,sum);
+	    list.add(arr[index]);
+	   sum+=arr[index];
+	   f(index+1,list,arr,sum);
+	   list.remove(list.size()-1);
+	   sum-=arr[index];
+	    
+	}
+}
+#####
+Output
+[1, 2]
+[2, 1]
+[3]
