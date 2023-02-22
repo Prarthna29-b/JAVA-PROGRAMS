@@ -1,0 +1,38 @@
+Print any sequence of the array which is producing the targeted sum
+Using Recursion 
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+	public static void main (String[] args) {
+	    List<Integer> list= new ArrayList<Integer>();
+	    int arr[]={3,2,1,2};
+  f(0,list,arr,0);
+	}
+static boolean	f(int index,List <Integer> list,int arr[],int sum)
+	{
+	    if(index==arr.length)
+	    {
+	        if(sum==3)
+	        {
+	    System.out.println (list);
+	   return true;
+	    } 
+	    return false;
+	    }
+	 if( f(index+1,list,arr,sum)==true)
+	 return true ;
+	    list.add(arr[index]);
+	 
+	   sum+=arr[index];
+	 if ( f(index+1,list,arr,sum)==true)
+	 return true;
+	   list.remove(list.size()-1);
+	   sum-=arr[index];
+	    return false;
+	}
+}
+##### Output 
+[1, 2]
