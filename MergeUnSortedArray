@@ -1,0 +1,26 @@
+package com.example.javacodings;
+import java.io.IOException;
+
+import java.util.*;
+public class MergeUnSortedArray
+{
+    static void mergeUnSortedTwoArrayAsSingle(int array1 [],int array2[])
+    {
+        int n=array1.length, m= array2.length,j=0 ,k=0;
+        int res[]=new int[m+n];
+        for(int i=0;i<n;i++)
+            res[j++]=array1[i];
+        for(int i=0;i<m;i++)
+            res[j++]=array2[i];
+        Arrays.sort(res);
+        for(int i=0;i<res.length;i++)
+            System.out.println(res[i]);
+
+    }
+    public static void main(String[] args)
+    {
+        int array1 []={1,2,3};
+        int array2 []={2,5,6};
+        mergeUnSortedTwoArrayAsSingle(array1, array2 )  ;
+    }
+}
